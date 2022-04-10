@@ -1,12 +1,14 @@
 import pandas as pd
 from pypodio2 import api
-from os import environ as env
+import os
+from dotenv import load_dotenv
 
+load_dotenv()
 
-client_id = env.get('PODIO_CLIENT_ID')
-client_secret = env.get('PODIO_CLIENT_SECRET')
-username = env.get('PODIO_USERNAME')
-password = env.get('PODIO_PASSWORD')
+client_id = os.getenv('PODIO_CLIENT_ID')
+client_secret = os.getenv('PODIO_CLIENT_SECRET')
+username = os.getenv('PODIO_USERNAME')
+password = os.getenv('PODIO_PASSWORD')
 
 podio = api.OAuthClient(
     		client_id,
