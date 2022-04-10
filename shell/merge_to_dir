@@ -1,0 +1,38 @@
+#!/bin/bash
+sudo chown -R graco:graco /home/graco/Music
+
+if [ $# = "4" ]; then
+	if [ $1 = "-a" ]; then
+		album="$2"
+		if [ $3 = "-p" ]; then
+			path="$4"
+
+			res=`mkdir "$path"`
+			if [ "$res" != "0" ]; then
+				for i in /home/graco/Music/*/"$album"/*; do 
+					mv "$i" "$path"/; 
+				done
+			fi
+		else
+			echo "Argumento inválido."
+		fi
+	elif [ $1 = "-p" ]; then
+		path="$2"
+		if [ $3 = '-a' ]; then
+			album="$4"
+
+			res=`mkdir "$path"`
+			if [ "$res" != "0" ]; then
+				for i in /home/graco/Music/*/"$album"/*; do 
+					mv "$i" "$path"/; 
+				done
+			fi
+		else
+			echo "Argumento inválido."
+		fi
+	else
+		echo "Argumento inválido."
+	fi
+else
+	echo 'Digite os argumentos.'
+fi

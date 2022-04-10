@@ -1,0 +1,47 @@
+#!/bin/bash
+if [ $# = "4" ]; then
+	if [ $1 = "-t" ]; then
+		taxa=$2
+		if [ $3 = "-p" ]; then
+			
+			res=`cd "$4"`
+			if [ "$res" = "0" ]; then
+				for i in *.mp3; do ffmpeg -i "$i" -ab "$taxa" -f mp3 "../$i"; done			
+				rm *
+				mv ../*.mp3 ./
+			fi
+		else
+			echo "Argumento inválido."
+		fi
+	elif [ $1 = "-p" ]; then
+		res=`cd "$2"`
+		if [ $res = "0" ]; then
+			if [ $3 = "-t" ]; then
+				
+				taxa="$4"
+				for i in *.mp3; do ffmpeg -i "$i" -ab "$taxa" -f mp3 "../$i"; done			
+				rm *
+				mv ../*.mp3 ./
+
+			else
+				echo "Argumento inválido."
+			fi
+		fi
+	else
+		echo "Argumento inválido."
+	fi
+elif [ $# = "2" ]; then
+		if [ $1 = "-t" ]; then
+			taxa="$2"
+			for i in *.mp3; do 
+				ffmpeg -i "$i" -ab "$taxa" -f mp3 "../$i";
+			done
+			rm *
+			mv ../*.mp3 ./
+
+		else
+			echo "Argumento inválido."
+		fi
+else
+	echo "Digite os argumentos."
+fi

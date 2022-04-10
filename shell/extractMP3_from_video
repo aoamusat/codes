@@ -1,0 +1,74 @@
+#!/bin/bash
+if [ $# = "1" ]; then
+	# Lendo endereco (path) do video
+	read video
+	
+	# Loop para ler os nomes das musicas com seus respectivos tempos de inicio e fim
+	while :
+	do
+		line=""
+		nome_faixa=""
+		aux=""
+		tempo_inicial=""
+		tempo_final=""
+		tot_seg_ini="0"
+		tot_seg_fin="0"
+		duracao="0"
+		colons="0"
+		segundos="0"
+		minutos="0"
+		horas="0"			
+		
+		read line
+		if [ "$line" = "" ]; then
+			break
+		else
+			nome_faixa=${line%.mp3*}
+			aux=${line#*mp3 }
+			tempo_inicial=${aux%-*}
+			tempo_final=${aux#*-}
+
+			# TEMPO INICIAL		
+			# contando o numero de ocorrencias de ':'		
+			aux=${tempo_inicial//[^:]}
+			colons=${#aux}
+			if [ "$colons" = "1" ]; then
+				minutos=${tempo_inicial%:*}
+				segundos=${tempo_inicial#*:}
+
+				# Convertendo string para float com o comando 'bc'
+				tot_seg_ini=`bc -l <<< "$minutos*60+$segundos"`
+			else
+				horas=${tempo_inicial%:*:*}
+				aux=${tempo_inicial#*:}
+				minutos=${aux%:*}
+				segundos=${aux#*:}
+				
+				tot_seg_ini=`bc -l <<<"$horas*3600+$minutos*60+$segundos"`
+			fi
+
+			# TEMPO FINAL
+			aux=${tempo_final//[^:]}
+			colons=${#aux}
+			if [ "$colons" = "1" ]; then
+				minutos=${tempo_final%:*}
+				segundos=${tempo_final#*:}
+				
+				tot_seg_fin=`bc -l <<<"$minutos*60+$segundos"`
+			else
+				horas=${tempo_final%:*:*}
+				aux=${tempo_final#*:}
+				minutos=${aux%:*}
+				segundos=${aux#*:}
+				
+				tot_seg_fin=`bc -l <<<"$horas*3600+$minutos*60+$segundos"`
+			fi
+
+			duracao=`bc -l <<<"$tot_seg_fin-$tot_seg_ini"`
+			
+			`ffmpeg -i ~/Videos/Albums/"$video" -ss "$tot_seg_ini" -t "$duracao" -b:a 128k -acodec libmp3lame "$nome_faixa".mp3 < /dev/null`
+		fi
+	done
+else
+	echo "Digite o caminho para o arquivo de dados."
+fi <"$1"
