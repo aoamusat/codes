@@ -3,3 +3,5 @@
 __pycache__
 !c/*.c
 c
+!cpp/*.cpp
+cpp
