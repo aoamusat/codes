@@ -29,7 +29,7 @@ else:
     workspaces = podio.Space.find_all_for_org(orgs[0]['org_id'])
     space = podio.Space.find(7589265)
     app = podio.Application.find(26460017)
-    item = podio.Item.find(2064843308)
+    item = podio.Item.find(2064759237)
     filtered_items = podio.Item.filter(26107969, {"offset": 0, "sort_by": "created_on", "sort_desc": False, "limit": 30})
     print(item)
 
