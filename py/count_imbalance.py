@@ -3,8 +3,7 @@ def countImbalance(weights, k):
     n = len(weights)
     count = 0
     for i in range(n):
-        min_weight = weights[i]
-        max_weight = weights[i]
+        min_weight = max_weight = weights[i]
         for j in range(i, n):
             min_weight = min(weights[j], min_weight)
             max_weight = max(weights[j], max_weight)
