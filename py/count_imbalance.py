@@ -12,6 +12,6 @@ def countImbalance(weights, k):
 
     return count
 
-weights = [1, 2, 3, 4]
+weights = [1, 3, 6]
 k = 3
 print(countImbalance(weights, k))
