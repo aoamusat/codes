@@ -6,6 +6,7 @@ app.listen(3000, () => {
 });
 
 app.use('/js', express.static('js'));
+app.use('/html', express.static('html'));
 
 app.get("/", (req, res) => {
   res.sendFile("/html/podio_auth.html", {root: './'});

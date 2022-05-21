@@ -49,13 +49,13 @@ function eventoGET(){
     let item_id = document.getElementById("item_id").value
     let authentication = JSON.parse(localStorage.getItem('authentication'))
     let oauth_token = `?oauth_token=${authentication.access_token}`
-    if(app_id != undefined && item_id != undefined) {
+    if(app_id && item_id) {
         let appEndpoint = `/app/${app_id}`
         let req1 = fazGet(baseURL+appEndpoint+oauth_token)
         req1.onload = function() {
             let resp = this.responseText
             console.log(resp)
-            document.write('=== APP INFO ===<br />'+resp+'<br />')
+            document.write('<br />=== APP INFO ===<br />'+resp+'<br />')
         }
 
         let itemEndpoint = `/item/${item_id}`
@@ -63,9 +63,9 @@ function eventoGET(){
         req2.onload = function() {
             let resp = this.responseText
             console.log(resp)
-            document.write('=== ITEM INFO ===<br />'+resp)
+            document.write('<br />=== ITEM INFO ===<br />'+resp+'<br />')
         }
-    }else if(app_id != undefined) {
+    }else if(app_id) {
         let appEndpoint = `/app/${app_id}`
         let req = fazGet(baseURL+appEndpoint+oauth_token)
         req.onload = function() {
