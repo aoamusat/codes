@@ -1,0 +1,32 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>From YouTube - https://youtu.be/efr1xbwFlKU</title>
+</head>
+<body>
+    <script src="/js/podio.js"></script>
+    <form>
+        <label for="client_id">Client ID:</label>
+        <input name="client_id" id="client_id" type="text">
+        <br><br>
+        <label for="client_secret">Client Secret:</label>
+        <input name="client_secret" id="client_secret" type="text">
+        <br><br>
+        <label for="username">Username:</label>
+        <input name="username" id="username" type="text">
+        <br><br>
+        <label for="password">Password:</label>
+        <input name="password" id="password" type="password">
+        <br><br>
+        <input type="button" onclick="autenticaUsuario()" value="Enviar"></button>
+
+        <div id="onsuccess" hidden>
+            <a href="html/podio_get.html">Podio Get</a>
+            <a href="podio_post.html">Podio Post</a>
+        </div>
+    </form>
+
+</body>
+</html>

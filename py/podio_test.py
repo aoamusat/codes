@@ -2,6 +2,7 @@ from pypodio2 import api
 import os
 from dotenv import load_dotenv
 import json
+import urllib.parse 
 
 load_dotenv()
 
@@ -25,28 +26,32 @@ except api.transport.TransportException as err:
         print('Token expirado.')
     exit(1)
 else:
+    print('Access Token: '+podio.transport._headers_factory.base_headers_factory.token.access_token)
+    print('Refresh Token: '+podio.transport._headers_factory.base_headers_factory.token.refresh_token)
+    podio = api.OAuthClient(
+            client_id,
+            client_secret,
+            username,
+            password
+        )
+    print('Access Token 2: '+podio.transport._headers_factory.base_headers_factory.token.access_token)
+    print('Refresh Token 2: '+podio.transport._headers_factory.base_headers_factory.token.refresh_token)
     orgs = podio.Org.get_all()
     workspaces = podio.Space.find_all_for_org(orgs[0]['org_id'])
-    space = podio.Space.find(7589265)
     app = podio.Application.find(26460017)
-    item = podio.Item.find(2064759237)
+    item = podio.Item.find(2104343273)
     filtered_items = podio.Item.filter(26107969, {"offset": 0, "sort_by": "created_on", "sort_desc": False, "limit": 30})
-    print(item)
+    #print(item)
+    task_board_app_id = 27017268
+    # POST 
+    # Sprint -> sprint-2
+    # Product Backlog -> sprint
+    demandas_product_backlog_id = 1989362480
+    sc_venda_direta_appid = 27337872
+    #print(podio.Item.create(task_board_app_id, {'fields': {'titulo-2': ['Criar nova migração para a Cloud'],
+    #                'observacoes': ['Teste'], 'difficulty': ['Average'],'sprint': [demandas_product_backlog_id]}}))
+    payload = {"fields":{"atendente":["teste 77"],"data-da-boleta":["2022-05-20 00:00:00"],"numero-do-pedido":["234234"],"numero-da-nf":["23423"],"valor-r-2":["234"],"forma-de-pagamento":["Cartão de Crédito - Demais bandeiras"],"parcelas":["7"],"outra-forma-de-pagamento":["Sim"],"valor-3":["8"]}}
+    #print(payload)
+    print(podio.Item.create(sc_venda_direta_appid, payload))
 
-    # Streamers -> 26531983
-    # Colaboradores -> 26107975
-    # Metas -> 26107971
-    # Calendario -> 26319140
 
-    # while True:
-    #     try:
-    #         orgs = podio.Org.get_all()
-    #     except api.transport.TransportException as err:
-    #         if err.status['status'] == '401':
-    #             print('Token expirado. Renovando... '+str(err))
-    #             change_podio(podio)
-    #         else:
-    #             print(str(err))
-    #     else:
-    #         print(orgs)
-    #print(podio)

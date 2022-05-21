@@ -1,6 +1,8 @@
 .env
-.venv
-__pycache__
+.venv/
+__pycache__/
+node_modules/
+package-lock.json
 c/*
 !c/*.c
 cpp/*

@@ -10,11 +10,7 @@ client_secret = os.getenv('PODIO_CLIENT_SECRET')
 username = os.getenv('PODIO_USERNAME')
 password = os.getenv('PODIO_PASSWORD')
 
-podio = api.OAuthClient(
-    		client_id,
-        	client_secret,
-        	username,
-        	password)
+podio = api.OAuthClient(client_id,client_secret,username,password)
 
 task_board_app_id = 27017268
 ajustes_app_id = 26033392
@@ -32,7 +28,7 @@ num_of_items = podio.Application.get_items(app_info.get('app_id'))['total']
 data = []
 for step in range(0, num_of_items, 250):
 	filtered_items = podio.Item.filter(app_info.get('app_id'), {"offset": step, "sort_by": "created_on", "sort_desc": False, "limit": 250})
-	items = filtered_items.get('items')
+	items = filtered_items.get('items') #filtered_items['items']
 	
 	for item in items:
 		d = []
