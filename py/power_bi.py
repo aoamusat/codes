@@ -48,7 +48,7 @@ for step in range(0, num_of_items, 250):
 					# Podem haver aspas duplas inseridas no valor do campo. Substituir com aspas simples
 					for elem in fields[j]['values']:
 						col_value += elem['value']['name'].replace("\"", "'") + "|"
-					col_value = s[:-1]
+					col_value = col_value[:-1]
 				elif fields[j]['type'] == "category":
 					col_value += fields[j]['values'][0]['value']['text'].replace("\"", "'")
 				elif fields[j]['type'] == "date" or (fields[j]['type'] == "calculation" and 'start' in \
@@ -64,7 +64,7 @@ for step in range(0, num_of_items, 250):
 					# Nesse caso o campo é multivalorado, então concatena-se com um pipe '|'
 					for val in fields[j]['values']:
 						col_value += val['value']['title'].replace("\"", "'") + "|"
-					col_value = s[:-1]
+					col_value = col_value[:-1]
 				elif fields[j]['type'] == "number":
 					col_value += str(int(float(fields[j]['values'][0]['value'])))
 				else:
