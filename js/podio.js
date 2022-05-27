@@ -27,20 +27,22 @@ function autenticaUsuario() {
     let client_secret = document.getElementById("client_secret").value
     let username = document.getElementById("username").value
     let password = encodeURIComponent(document.getElementById("password").value)
-    console.log(client_id)
-    console.log(client_secret)
-    console.log(username)
-    console.log(password)
+    console.log("Client ID: "+client_id)
+    console.log("Client Secret: "+client_secret)
+    console.log("Username: "+username)
+    console.log("Password: "+password)
 
     const requestBody = `?grant_type=password&username=${username}&password=${password}`+
                         `&client_id=${client_id}&client_secret=${client_secret}`
-
+    
     req = fazPost(url+requestBody, "")
     req.onload = function() {
         let resp = this.responseText
         console.log("Response: "+resp)
-        document.getElementById("onsuccess").style.display = 'block'
-        localStorage.setItem('authentication', resp)
+        if(!resp.includes('error')) {
+            document.getElementById("onsuccess").style.display = 'block'
+            localStorage.setItem('authentication', resp)
+        }
     }
 }
 
