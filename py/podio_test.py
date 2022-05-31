@@ -33,20 +33,20 @@ else:
     item = podio.Item.find(2104343273)
     filtered_items = podio.Item.filter(26107969, {"offset": 0, "sort_by": "created_on", "sort_desc": False, "limit": 30})
     #print(item)
-    task_board_app_id = 27017268
+    task_board_appID = 27017268
     # POST 
     # Sprint -> sprint-2
     # Product Backlog -> sprint
-    demandas_product_backlog_id = 1989362480
-    sc_venda_direta_appid = 27337872
-    hugo_teste_nf_appid = 26869160
-    #print(podio.Item.create(task_board_app_id, {'fields': {'titulo-2': ['Criar nova migração para a Cloud'],
-    #                'observacoes': ['Teste'], 'difficulty': ['Average'],'sprint': [demandas_product_backlog_id]}}))
-    payload = {"fields":{"atendente":["teste 77"],"data-da-boleta":["2022-05-20 00:00:00"],"numero-do-pedido":["234234"],"numero-da-nf":["23423"],"valor-r-2":["234"],"forma-de-pagamento":["Cartão de Crédito - Demais bandeiras"],"parcelas":["7"],"outra-forma-de-pagamento":["Sim"],"valor-3":["8"]}}
+    demandas_product_backlog_itemID = 1989362480
+    sc_venda_direta_appID = 27337872
+    hugo_teste_nf_appID = 26869160
+    #print(podio.Item.create(task_board_appID, {'fields': {'titulo-2': ['Criar nova migração para a Cloud'],
+    #                'observacoes': ['Teste'], 'difficulty': ['Average'],'sprint': [demandas_product_backlog_itemID]}}))
+    #payload = {"fields":{"atendente":["teste 77"],"data-da-boleta":["2022-05-20 00:00:00"],"numero-do-pedido":["234234"],"numero-da-nf":["23423"],"valor-r-2":["234"],"forma-de-pagamento":["Cartão de Crédito - Demais bandeiras"],"parcelas":["7"],"outra-forma-de-pagamento":["Sim"],"valor-3":["8"]}}
     #print(payload)
-    #print(podio.Item.create(sc_venda_direta_appid, payload))
+    #print(podio.Item.create(sc_venda_direta_appID, payload))
     payload = {'fields': {'texto-2': ['Graco Teste']}}
-    created_item = podio.Item.create(hugo_teste_nf_appid, payload)
+    created_item = podio.Item.create(hugo_teste_nf_appID, payload)
     print('Created item: %s' % created_item)
     # Upload a file
     filepath = '/home/graco.silva/Downloads/okb9.xlsx'
