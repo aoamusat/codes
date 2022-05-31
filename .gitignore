@@ -2,7 +2,7 @@
 .venv/
 __pycache__/
 node_modules/
-package-lock.json
+*.json
 c/*
 !c/*.c
 cpp/*

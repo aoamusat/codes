@@ -30,9 +30,11 @@ else:
     orgs = podio.Org.get_all()
     workspaces = podio.Space.find_all_for_org(orgs[0]['org_id'])
     app = podio.Application.find(26460017)
-    item = podio.Item.find(2104343273)
+    item = podio.Item.find(1935347204)
     filtered_items = podio.Item.filter(26107969, {"offset": 0, "sort_by": "created_on", "sort_desc": False, "limit": 30})
-    #print(item)
+    file = open('/home/graco.silva/git/codes/inputs_outputs/podio_item.json', 'w')
+    file.write(json.dumps(item))
+    file.close()
     task_board_appID = 27017268
     # POST 
     # Sprint -> sprint-2

@@ -13,8 +13,7 @@ def get_podio_field_values(field):
 		value = value[:-1]
 	elif field['type'] == "category":
 		value += field['values'][0]['value']['text'].replace("\"", "'")
-	elif field['type'] == "date" or (field['type'] == "calculation" and 'start' in \
-		field['values'][0]):
+	elif field['type'] == "date" and 'start' in field['values'][0]:
 		value += field['values'][0]['start']
 	elif field['type'] == "money":
 		value += field['values'][0]['currency'] + " " + field['values'][0]['value']
