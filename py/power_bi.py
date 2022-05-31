@@ -7,7 +7,7 @@ def get_podio_field_values(field):
 	value = ''
 	if field['type'] == "contact":
 		# Nesse caso o campo é multivalorado, então concatena-se com um pipe '|'
-		# Podem haver aspas duplas inseridas no valor do campo. Substituir com aspas simples
+		# Podem haver aspas duplas inseridas no valor do campo. Substituir com aspas simples (tratamento para banco de dados)
 		for elem in field['values']:
 			value += elem['value']['name'].replace("\"", "'") + "|"
 		value = value[:-1]
@@ -68,7 +68,7 @@ for step in range(0, num_of_items, 250):
 
 		fields = [x for x in item['fields'] if f"{x['external_id'][:40]}" in column_labels]
 		# Fazendo a comparação entre os campos existentes e os preenchidos
-        # Caso o campo esteja em branco no Podio, preencher com '?'
+        # Caso o campo esteja em branco no Podio, preencher com '' (string vazia)
 		item_iter = 0
 		for app_iter in range(len(column_labels)):
 			col_value = ""
