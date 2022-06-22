@@ -70,14 +70,14 @@ else:
     file.write(json.dumps(hooks))
     file.close()
     # Verify hook
-    graco_teste_createItem_hookID = 20555074
+    graco_teste_createItem_hookID = 20555266
     graco_teste_deleteItem_hookID = 20555192
     verify_hook = podio.Hook.verify(graco_teste_createItem_hookID)
     # Validate hook
-    hook_code = '0ea8bf65'
-    validate_hook = podio.Hook.validate(graco_teste_deleteItem_hookID, hook_code)
-    deleted_itemID = 2116019389
-    item = podio.Item.find(deleted_itemID)
+    hook_code = '5c7c3de8'
+    validate_hook = podio.Hook.validate(graco_teste_createItem_hookID, hook_code)
+    #deleted_itemID = 2116019389
+    #item = podio.Item.find(deleted_itemID)
     file = open('/home/graco.silva/git/codes/inputs_outputs/podio_item.json', 'w')
     file.write(json.dumps(item))
     file.close()

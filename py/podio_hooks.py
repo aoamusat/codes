@@ -6,16 +6,18 @@ app = Flask(__name__)
 def hello():
     return 'Webhooks with Python'
 
-@app.route('/item.create', methods=['POST'])
+@app.route('/ajustes/item.create', methods=['POST'])
 def itemCreate():
     data = request.form
     if 'code' in data:
         print('Verificação do hook iniciada. Código: %s' % data['code'])
     else:
         print('=== Item Criado ID -> %s ===' % data['item_id'])
+        #item = podio.Item.find(data['item_id'])
+
     return data
 
-@app.route('/item.delete', methods=['POST'])
+@app.route('/ajustes/item.delete', methods=['POST'])
 def itemDelete():
     data = request.form
     if 'code' in data:
