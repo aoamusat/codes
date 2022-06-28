@@ -1,0 +1,12 @@
+#!/bin/bash 
+#
+while true
+do
+	size=$(du -hs /var/log/odoo | cut -f1)
+	pow="${size##*[0-9]}"
+	num="${size%%[A-Z]}"
+	if [ "$pow" == "G" ] && [[ "$num" > "60" ]]; then 
+		rm /var/log/odoo/*
+	fi
+	sleep 86400
+done
