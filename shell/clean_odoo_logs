@@ -1,5 +1,4 @@
 #!/bin/bash 
-#
 while true
 do
 	size=$(du -hs /var/log/odoo | cut -f1)

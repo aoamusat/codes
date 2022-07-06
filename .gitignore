@@ -8,3 +8,5 @@ c/*
 !c/*.c
 cpp/*
 !cpp/*.cpp
+java/*
+!java/*.java
